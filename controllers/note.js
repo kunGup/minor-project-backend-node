@@ -18,3 +18,13 @@ exports.getNotes = async (req, res) => {
     res.status(400).json(err.message);
   }
 };
+
+exports.deleteNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const note = await Note.findByIdAndRemove(id);
+    res.status(200).json(note);
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
+};
