@@ -1,7 +1,6 @@
 const axios = require("axios");
 const { Youtube } = require("tube-api");
-const Jabber = require('jabber')
-
+const Jabber = require("jabber");
 
 exports.getSummary = async (req, res) => {
   try {

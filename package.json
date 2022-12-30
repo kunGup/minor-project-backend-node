@@ -15,10 +15,15 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-jwt": "^5.3.1",
+    "express-validator": "^5.3.1",
     "jabber": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
     "lorem-ipsum": "^2.0.8",
     "mongoose": "^6.7.2",
+    "morgan": "^1.10.0",
     "tube-api": "^1.0.5",
+    "uuidv1": "^1.6.14",
     "youtube-video-parser": "^1.0.4"
   }
 }

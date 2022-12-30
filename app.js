@@ -4,6 +4,9 @@ const mongoose = require('mongoose')
 const notesRoutes = require('./routes/notes')
 const foldersRoutes = require('./routes/folders')
 const ytRoutes = require('./routes/ytsum')
+const authRoutes = require('./routes/auth')
+const morgan = require("morgan");
+const expressValidator = require("express-validator");
 const cors = require('cors')
 require('dotenv').config()
 
@@ -17,10 +20,13 @@ mongoose.connection.on('error',(err)=>{
 //middlewares
 app.use(express.json())
 app.use(cors())
+app.use(morgan("dev"));
+app.use(expressValidator())
 
 app.use('/api/notes',notesRoutes)
 app.use('/api/folders',foldersRoutes)
 app.use("/api/ytsum", ytRoutes);
+app.use("/api",authRoutes)
 
 const port = process.env.PORT || 8000
 app.listen(port,()=>{
