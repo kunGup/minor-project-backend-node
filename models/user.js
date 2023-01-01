@@ -21,6 +21,18 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     salt: String,
+    notes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Note",
+      },
+    ],
+    folders:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Folder"
+      }
+    ]
   },
   { timestamps: true }
 );

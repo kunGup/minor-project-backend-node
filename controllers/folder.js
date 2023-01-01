@@ -1,19 +1,33 @@
 const Folder = require('../models/folder')
-
+const User = require('../models/user')
 exports.getFolders = async(req, res) => {
-    try{
-        const folders = await Folder.find().sort({'updatedAt':-1}).populate('notes')
-        res.status(200).json(folders)
-    }catch(err){
-        res.status(400).json(err.message)
+  User.findById(req.user._id,(err,user)=>{
+    if(!user||err){
+      return res.status(400).json(err.message);
     }
+    Folder.find({_id:{$in:user.folders}}).sort({ updatedAt: -1 }).populate("notes").exec((err,folders)=>{
+      if(err){
+        return res.status(400).json(err.message);
+      }
+      res.status(200).json(folders);
+    })
+  })
 }
 
 exports.newFolder = async (req, res) => {
   try {
     const folder = new Folder(req.body);
     await folder.save()
-    res.status(200).json(folder);
+    User.findById(req.user._id, (err, user) => {
+      if (!user || err) {
+        return res.status(400).json(err.message);
+      }
+      user.folders.push(folder._id);
+      user.save().then(() => {
+        res.status(200).json(folder);
+      });
+    });
+    
   } catch (err) {
     res.status(400).json(err.message);
   }
@@ -22,6 +36,7 @@ exports.newFolder = async (req, res) => {
 exports.editFolder = async (req, res) => {
   try {
     const {folderId,noteId,title} = req.body
+    console.log(folderId);
     const folder = await Folder.findById(folderId);
     if(title)
     folder.title = title

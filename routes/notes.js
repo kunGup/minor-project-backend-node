@@ -1,14 +1,13 @@
-const express = require('express')
+const express = require('express');
+const { requireSignin, isAuth } = require('../controllers/auth');
 const router = express.Router()
-const {newNote, getNotes, deleteNote} = require('../controllers/note')
-router.get('/',getNotes)
+const {newNote, getNotes, deleteNote, editNote} = require('../controllers/note')
+router.get('/',requireSignin, isAuth,getNotes)
 
-router.post('/',newNote)
+router.post("/", requireSignin, isAuth, newNote);
 
-router.put('/',(req,res)=>{
+router.put("/:id", requireSignin, isAuth, editNote);
 
-})
-
-router.delete("/:id", deleteNote);
+router.delete("/:id", requireSignin, isAuth, deleteNote);
 
 module.exports = router
