@@ -22,7 +22,7 @@ exports.signin = (req, res) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: user,
+        error: err,
       });
     }
     //is user found then make sure email and password match
