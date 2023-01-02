@@ -22,6 +22,7 @@
     "lorem-ipsum": "^2.0.8",
     "mongoose": "^6.7.2",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
     "tube-api": "^1.0.5",
     "uuidv1": "^1.6.14",
     "youtube-video-parser": "^1.0.4"
