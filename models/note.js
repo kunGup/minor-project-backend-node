@@ -12,8 +12,8 @@ const noteSchema = mongoose.Schema(
     pic: {
         type: String,
     },
-    text: {
-        type: String,
+    summary: {
+        type: Array,
         required: true
     },
     url: {
