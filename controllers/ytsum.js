@@ -1,3 +1,4 @@
+const fetch = require('node-fetch')
 const axios = require("axios");
 const { Youtube } = require("tube-api");
 const Jabber = require("jabber");
