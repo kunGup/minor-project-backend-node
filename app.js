@@ -28,7 +28,7 @@ app.use('/api/folders',foldersRoutes)
 app.use("/api/ytsum", ytRoutes);
 app.use("/api",authRoutes)
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 5000
 app.listen(port,()=>{
     console.log(`Server is running on port ${port}`);
 })
